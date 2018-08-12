@@ -14,11 +14,20 @@ public class MenuHandler : MonoBehaviour
     public Text numberOfBedsText;
 
     public Slider angerSlider;
+    public Slider populationSlider;
+    public Slider populationSliderFood;
+    public Slider populationSliderBeds;
+    public Text populationSliderText;
+    public Text populationSliderBedsText;
+    public Text populationSliderFoodText;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
+    // Use this for initialization
+    void Start ()
+	{
+	    populationSlider.maxValue = ResourceManager.instance.totalPopulationToCome;
+	    populationSliderFood.maxValue = ResourceManager.instance.totalPopulationToCome;
+	    populationSliderBeds.maxValue = ResourceManager.instance.totalPopulationToCome;
+    }
 
     public void DisplayIndicators()
     {
@@ -33,6 +42,14 @@ public class MenuHandler : MonoBehaviour
         foodGrowthText.text = ResourceManager.instance.currentFoodGrowth.ToString();
         numberOfBedsText.text = ResourceManager.instance.peopleCapacity.ToString();
         angerSlider.value = ResourceManager.instance.anger;
+        populationSliderText.text = ResourceManager.instance.FormDataForPopulationIndicator();
+        populationSlider.value = ResourceManager.instance.peopleAmount;
+
+        populationSliderFood.value = ResourceManager.instance.food;
+        populationSliderBeds.value = ResourceManager.instance.peopleCapacity;
+        populationSliderBedsText.text = ResourceManager.instance.FormDataForBedsIndicator();
+        populationSliderFoodText.text = ResourceManager.instance.FormDataForFoodIndicator();
+
     }
 
 

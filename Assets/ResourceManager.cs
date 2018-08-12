@@ -31,7 +31,7 @@ public class ResourceManager : MonoBehaviour {
 
 
     public float fightSpeed = 5f;
-    public int onePersonConsumes = 1;
+    public int personConsumtion = 1;
 
     [Header("Цвета локаций")]
     public Color occupiedPlaceColor;
@@ -108,7 +108,6 @@ public class ResourceManager : MonoBehaviour {
             {
                 AddResourceSurplace(placeBehavior);
             }
-
         }
     }
 
@@ -127,15 +126,30 @@ public class ResourceManager : MonoBehaviour {
 
     public void UpdatePeopleAmount()
     {
-        if (totalPopulationToCome - amountOfPeopleInShip - peopleAmount >= 0)
-        {
-            peopleAmount += amountOfPeopleInShip;
-        }
-        else
-        {
-            peopleAmount += totalPopulationToCome - amountOfPeopleInShip;
-            
-        }
+        //if (totalPopulationToCome - amountOfPeopleInShip - peopleAmount >= 0)
+        //{
+        //    peopleAmount += amountOfPeopleInShip;
+        //}
+        peopleAmount += amountOfPeopleInShip;
+    }
+
+    
+
+    public string FormDataForPopulationIndicator()
+    {
+        string stringData;
+        stringData = peopleAmount.ToString() + "/" + totalPopulationToCome.ToString();
+        return stringData;
+    }
+
+    public string FormDataForBedsIndicator()
+    {
+        return (peopleCapacity - peopleAmount).ToString();
+    }
+
+    public string FormDataForFoodIndicator()
+    {
+        return (food - peopleAmount * personConsumtion).ToString();
     }
 
     public void CheckForVictory()

@@ -25,8 +25,11 @@ public class GameUpdater : MonoBehaviour
         {
             ManageGameCycle();
             CheckForGameEnd();
+            ResourceManager.instance.CheckForVictory();
         }
     }
+
+    
 
     private static void CheckForGameEnd()
     {
@@ -49,11 +52,9 @@ public class GameUpdater : MonoBehaviour
 
     private static void UpdateResources()
     {
-
-
         ResourceManager.instance.UpdatePeopleAmount();
         ResourceManager.instance.food += ResourceManager.instance.currentFoodGrowth;
-        ResourceManager.instance.food -=
-        ResourceManager.instance.peopleAmount * ResourceManager.instance.onePersonConsumes;
+        ResourceManager.instance.food -= 
+        ResourceManager.instance.peopleAmount * ResourceManager.instance.personConsumtion;
     }
 }
