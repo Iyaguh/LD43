@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-[ExecuteInEditMode]
+//[ExecuteInEditMode]
 public class PlaceBehavior : MonoBehaviour, IPointerClickHandler
 {
     [HideInInspector]
@@ -146,7 +146,18 @@ public class PlaceBehavior : MonoBehaviour, IPointerClickHandler
     // Update is called once per frame
     void Update ()
     {
+
+        if (!ResourceManager.instance.isPaused)
+        {
+            StateMachine();
+        }
         placeOccupantsText.text = numberOfPeople.ToString();
+
+    }
+
+
+    public void StateMachine()
+    {
         switch (placeState)
         {
             case PlaceState.vacant:
@@ -162,14 +173,10 @@ public class PlaceBehavior : MonoBehaviour, IPointerClickHandler
                 {
                     ResourceManager.instance.GrowAngerEnemies();
                 }
-
-
                 return;
-
-
             case PlaceState.fighting:
                 // launch indicator  
-                indicatorValue += (ResourceManager.instance.fightSpeed + 5 * (numberOfPeople - numberOfEnemies)) *Time.deltaTime;
+                indicatorValue += (ResourceManager.instance.fightSpeed + 5 * (numberOfPeople - numberOfEnemies)) * Time.deltaTime;
                 placeIndicator.fillAmount = indicatorValue * 0.01f;
                 ResourceManager.instance.GrowAngerEnemies();
                 if (indicatorValue >= 100)
@@ -179,14 +186,8 @@ public class PlaceBehavior : MonoBehaviour, IPointerClickHandler
                     ResourceManager.instance.AddResourceSurplace(this);
                     SetPlaceImage();
                 }
-
-                //
-
                 return;
         }
-
-
-
     }
     
 

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [ExecuteInEditMode]
 public class ResourceManager : MonoBehaviour {
@@ -22,6 +23,9 @@ public class ResourceManager : MonoBehaviour {
 
     public float anger = 0f;
     public float angerGrowthRate = 2f;
+    public int totalPopulationToCome = 50;
+
+    public bool isPaused = false;
 
 
 
@@ -76,6 +80,11 @@ public class ResourceManager : MonoBehaviour {
         anger += angerGrowthRate * Time.deltaTime;
     }
 
+    public void StopPlayTheGame ()
+    {
+        isPaused = !isPaused;
+    }
+
     public void GrowAngerFood()
     {
         anger += angerGrowthRate * Time.deltaTime;
@@ -114,5 +123,31 @@ public class ResourceManager : MonoBehaviour {
         {
             peopleCapacity += placeBehavior.resourceSurplace;
         }
+    }
+
+    public void UpdatePeopleAmount()
+    {
+        if (totalPopulationToCome - amountOfPeopleInShip - peopleAmount >= 0)
+        {
+            peopleAmount += amountOfPeopleInShip;
+        }
+        else
+        {
+            peopleAmount += totalPopulationToCome - amountOfPeopleInShip;
+            
+        }
+    }
+
+    public void CheckForVictory()
+    {
+        if (totalPopulationToCome - peopleAmount <= 0)
+        {
+            StartVictorySequence();
+        }
+    }
+
+    public void StartVictorySequence()
+    {
+        SceneManager.LoadScene(2);
     }
 }

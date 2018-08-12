@@ -33,7 +33,6 @@ public class MenuHandler : MonoBehaviour
         foodGrowthText.text = ResourceManager.instance.currentFoodGrowth.ToString();
         numberOfBedsText.text = ResourceManager.instance.peopleCapacity.ToString();
         angerSlider.value = ResourceManager.instance.anger;
-
     }
 
 
