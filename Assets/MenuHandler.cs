@@ -11,7 +11,9 @@ public class MenuHandler : MonoBehaviour
     public Text populationGrowthText;
     public Text foodAmountText;
     public Text foodGrowthText;
-    public Text numberOfBedsText;   
+    public Text numberOfBedsText;
+
+    public Slider angerSlider;
 
 	// Use this for initialization
 	void Start () {
@@ -30,6 +32,7 @@ public class MenuHandler : MonoBehaviour
         foodAmountText.text = ResourceManager.instance.food.ToString();
         foodGrowthText.text = ResourceManager.instance.currentFoodGrowth.ToString();
         numberOfBedsText.text = ResourceManager.instance.peopleCapacity.ToString();
+        angerSlider.value = ResourceManager.instance.anger;
 
     }
 

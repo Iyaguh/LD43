@@ -7,7 +7,7 @@ using UnityEngine.UI;
 [ExecuteInEditMode]
 public class PlaceBehavior : MonoBehaviour, IPointerClickHandler
 {
-
+    [HideInInspector]
     public bool isTaken = false;
     public enum PlaceState { taken, vacant, enemies, fighting}
     public PlaceState placeState;
@@ -158,6 +158,11 @@ public class PlaceBehavior : MonoBehaviour, IPointerClickHandler
 
             case PlaceState.enemies:
                 // show indicator             
+                if (isPlaceConnected())
+                {
+                    ResourceManager.instance.GrowAngerEnemies();
+                }
+
 
                 return;
 
@@ -166,6 +171,7 @@ public class PlaceBehavior : MonoBehaviour, IPointerClickHandler
                 // launch indicator
                 indicatorValue += ResourceManager.instance.fightSpeed *Time.deltaTime;
                 placeIndicator.fillAmount = indicatorValue * 0.01f;
+                ResourceManager.instance.GrowAngerEnemies();
                 if (indicatorValue >= 100)
                 {
                     placeState = PlaceState.taken;

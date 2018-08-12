@@ -20,7 +20,13 @@ public class SpawnerBehavior : MonoBehaviour
 	
 	// Update is called once per frame
 	void Update () {
+
+
+        
 	    ResourceManager.instance.spawnTimer = Time.time - timeTag;
+
+
+
         if (Time.time - timeTag > deltaSpawnTime)
 	    {
 	        print("приехали колонисты");

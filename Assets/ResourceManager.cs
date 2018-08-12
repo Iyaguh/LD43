@@ -20,6 +20,10 @@ public class ResourceManager : MonoBehaviour {
     [HideInInspector]
     public int currentFoodGrowth = 0;
 
+    public float anger = 0f;
+    public float angerGrowthRate = 2f;
+
+
 
 
     public float fightSpeed = 5f;
@@ -54,7 +58,32 @@ public class ResourceManager : MonoBehaviour {
         print("одно место");
     }
 
+    public void CheckIfNotEnoughFood()
+    {
+        if (food < 0)
+        {
+            GrowAngerEnemies();
+        }
 
+        if (peopleCapacity < peopleAmount)
+        {
+            GrowAngerEnemies();
+        }
+    }
+
+    public void GrowAngerEnemies()
+    {
+        anger += angerGrowthRate * Time.deltaTime;
+    }
+
+    public void GrowAngerFood()
+    {
+        anger += angerGrowthRate * Time.deltaTime;
+    }
+    public void GrowAngerPopulation()
+    {
+        anger += angerGrowthRate * Time.deltaTime;
+    }
 
 
 
