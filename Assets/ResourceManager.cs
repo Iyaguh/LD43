@@ -6,19 +6,11 @@ using UnityEngine;
 public class ResourceManager : MonoBehaviour {
 
     public static ResourceManager instance;
-    public MenuHandler menuHandler;
-    public PlaceBehavior[] placeBehaviors;
-    public Color occupiedPlaceColor;
-    public Color vacantPlaceColor;
-    public Color enemiesPlaceColor;
-    public Color fightingPlaceColor;
-
-    public int onePersonConsumes = 1;
-
-
+    [Header("Изначальные параметры")]
     public int food = 0;
     public int peopleCapacity = 0;
     public int peopleAmount = 0;
+    [HideInInspector]
     public float spawnTimer = 0;
     public int amountOfPeopleInShip = 0;
     public int startPopulationGrowth = 0;
@@ -28,12 +20,30 @@ public class ResourceManager : MonoBehaviour {
     [HideInInspector]
     public int currentFoodGrowth = 0;
 
+
+
+    public float fightSpeed = 5f;
+    public int onePersonConsumes = 1;
+
+    [Header("Цвета локаций")]
+    public Color occupiedPlaceColor;
+    public Color vacantPlaceColor;
+    public Color enemiesPlaceColor;
+    public Color fightingPlaceColor;
+
+
+
+
+
+    [Header("Спрайты локаций")]
     public Sprite placeForestSprite;
     public Sprite placeShelterSprite;
     public Sprite placeEnemySprite;
-    public float fightSpeed = 5f;
 
+    [HideInInspector]
+    public PlaceBehavior[] placeBehaviors;
 
+    public MenuHandler menuHandler;
 
     private void Awake()
     {

@@ -171,6 +171,7 @@ public class PlaceBehavior : MonoBehaviour, IPointerClickHandler
                     placeState = PlaceState.taken;
                     SetColorForPlace();
                     ResourceManager.instance.AddResourceSurplace(this);
+                    SetPlaceImage();
                 }
 
                 //
