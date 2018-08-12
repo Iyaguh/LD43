@@ -53,8 +53,9 @@ public class GameUpdater : MonoBehaviour
     private static void UpdateResources()
     {
         ResourceManager.instance.UpdatePeopleAmount();
-        ResourceManager.instance.food += ResourceManager.instance.currentFoodGrowth;
-        ResourceManager.instance.food -= 
-        ResourceManager.instance.peopleAmount * ResourceManager.instance.personConsumtion;
+
+        //ResourceManager.instance.food += ResourceManager.instance.currentFoodGrowth;
+        //ResourceManager.instance.food -= 
+        //ResourceManager.instance.peopleAmount * ResourceManager.instance.personConsumtion;
     }
 }

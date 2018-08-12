@@ -64,7 +64,12 @@ public class ResourceManager : MonoBehaviour {
 
     public void CheckIfNotEnoughFood()
     {
-        if (food < 0)
+        //if (food < 0)
+        //{
+        //    GrowAngerEnemies();
+        //}
+
+        if (currentFoodGrowth < peopleAmount)
         {
             GrowAngerEnemies();
         }
@@ -149,7 +154,8 @@ public class ResourceManager : MonoBehaviour {
 
     public string FormDataForFoodIndicator()
     {
-        return (food - peopleAmount * personConsumtion).ToString();
+        // return (food - peopleAmount * personConsumtion).ToString();
+        return (currentFoodGrowth - peopleAmount).ToString();
     }
 
     public void CheckForVictory()

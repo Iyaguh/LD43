@@ -105,18 +105,36 @@ public class PlaceBehavior : MonoBehaviour, IPointerClickHandler
                 if (placeState == PlaceState.enemies & numberOfPeople >= numberOfEnemies)
                 {
                     placeState = PlaceState.fighting;
+                    ResourceManager.instance.currentFoodGrowth -= numberOfPeople;
                     thisPlaceImage.color = ResourceManager.instance.fightingPlaceColor;
+                }
+
+                if (placeState == PlaceState.fighting)
+                {
+                    if (ResourceManager.instance.currentFoodGrowth != 0)
+                    {
+                        ResourceManager.instance.currentFoodGrowth -= 1;
+                    }
                 }
             }
             else if (eventData.button == PointerEventData.InputButton.Middle)
                 Debug.Log("Middle click");
             else if (eventData.button == PointerEventData.InputButton.Right)
             {
-                ChangeNumberOfPeople(-1);
+
+                if (numberOfPeople > 0 & placeState == PlaceState.fighting || placeState == PlaceState.enemies)
+                {
+                    ChangeNumberOfPeople(-1);
+                    ResourceManager.instance.currentFoodGrowth += 1;
+                }
+
+                
                 if (placeState == PlaceState.fighting & numberOfPeople < numberOfEnemies)
                 {
                     placeState = PlaceState.enemies;
                 }
+
+
             }
         }       
     }
@@ -176,10 +194,12 @@ public class PlaceBehavior : MonoBehaviour, IPointerClickHandler
             case PlaceState.fighting:
                 // launch indicator  
                 indicatorValue += (ResourceManager.instance.fightSpeed + 5 * (numberOfPeople - numberOfEnemies)) * Time.deltaTime;
+
                 placeIndicator.fillAmount = indicatorValue * 0.01f;
                 ResourceManager.instance.GrowAngerEnemies();
                 if (indicatorValue >= 100)
                 {
+                    ResourceManager.instance.currentFoodGrowth += numberOfPeople;
                     placeState = PlaceState.taken;
                     SetColorForPlace();
                     ResourceManager.instance.AddResourceSurplace(this);

@@ -45,7 +45,10 @@ public class MenuHandler : MonoBehaviour
         populationSliderText.text = ResourceManager.instance.FormDataForPopulationIndicator();
         populationSlider.value = ResourceManager.instance.peopleAmount;
 
-        populationSliderFood.value = ResourceManager.instance.food;
+
+
+        //        populationSliderFood.value = ResourceManager.instance.food;
+        populationSliderFood.value = ResourceManager.instance.currentFoodGrowth;
         populationSliderBeds.value = ResourceManager.instance.peopleCapacity;
         populationSliderBedsText.text = ResourceManager.instance.FormDataForBedsIndicator();
         populationSliderFoodText.text = ResourceManager.instance.FormDataForFoodIndicator();
