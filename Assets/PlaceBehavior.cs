@@ -168,8 +168,8 @@ public class PlaceBehavior : MonoBehaviour, IPointerClickHandler
 
 
             case PlaceState.fighting:
-                // launch indicator
-                indicatorValue += ResourceManager.instance.fightSpeed *Time.deltaTime;
+                // launch indicator  
+                indicatorValue += (ResourceManager.instance.fightSpeed + 5 * (numberOfPeople - numberOfEnemies)) *Time.deltaTime;
                 placeIndicator.fillAmount = indicatorValue * 0.01f;
                 ResourceManager.instance.GrowAngerEnemies();
                 if (indicatorValue >= 100)
