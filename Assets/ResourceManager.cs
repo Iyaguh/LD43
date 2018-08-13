@@ -26,6 +26,7 @@ public class ResourceManager : MonoBehaviour {
     public int totalPopulationToCome = 50;
 
     public bool isPaused = false;
+    public bool disableHomeAnger = false;
 
 
 
@@ -55,6 +56,7 @@ public class ResourceManager : MonoBehaviour {
 
     private void Awake()
     {
+        anger = 0f;
         instance = this;
         menuHandler.DisplayIndicators();
         placeBehaviors = FindObjectsOfType<PlaceBehavior>();
@@ -74,7 +76,8 @@ public class ResourceManager : MonoBehaviour {
             GrowAngerEnemies();
         }
 
-        if (peopleCapacity < peopleAmount)
+
+        if (peopleCapacity < peopleAmount & !disableHomeAnger)
         {
             GrowAngerEnemies();
         }

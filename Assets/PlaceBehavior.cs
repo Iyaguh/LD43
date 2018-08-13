@@ -4,12 +4,12 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-//[ExecuteInEditMode]
+[ExecuteInEditMode]
 public class PlaceBehavior : MonoBehaviour, IPointerClickHandler
 {
     [HideInInspector]
     public bool isTaken = false;
-    public enum PlaceState { taken, vacant, enemies, fighting}
+    public enum PlaceState { taken, vacant, enemies, fighting, farming, grabing}
     public PlaceState placeState;
 
     public enum BuildingType { forest, shelter }
@@ -116,6 +116,9 @@ public class PlaceBehavior : MonoBehaviour, IPointerClickHandler
                         ResourceManager.instance.currentFoodGrowth -= 1;
                     }
                 }
+
+                
+
             }
             else if (eventData.button == PointerEventData.InputButton.Middle)
                 Debug.Log("Middle click");
@@ -181,6 +184,11 @@ public class PlaceBehavior : MonoBehaviour, IPointerClickHandler
 
                 return;
             case PlaceState.taken:
+
+                return;
+
+            case PlaceState.grabing:
+
 
                 return;
 
