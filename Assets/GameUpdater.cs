@@ -26,7 +26,6 @@ public class GameUpdater : MonoBehaviour
             ManageGameCycle();
             CheckForGameEnd();
             ResourceManager.instance.CheckForVictory();
-
         }
     }
 

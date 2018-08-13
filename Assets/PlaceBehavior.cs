@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-[ExecuteInEditMode]
+//[ExecuteInEditMode]
 public class PlaceBehavior : MonoBehaviour, IPointerClickHandler
 {
     [HideInInspector]
@@ -27,9 +27,12 @@ public class PlaceBehavior : MonoBehaviour, IPointerClickHandler
     public Text placeOccupantsText;
     public Image placeIndicator;
 
-    public float indicatorValue = 50;
+    public float indicatorValue = 0;
     public Color thisPlaceColor;
     public Image thisPlaceImage;
+
+    public bool initiateTutorial = false;
+
 
 
 
@@ -48,6 +51,8 @@ public class PlaceBehavior : MonoBehaviour, IPointerClickHandler
 
     private void SetColorForPlace()
     {
+
+        placeIndicator.fillAmount = indicatorValue * 0.01f;
         switch (placeState)
         {
             case PlaceState.vacant:
@@ -66,6 +71,8 @@ public class PlaceBehavior : MonoBehaviour, IPointerClickHandler
                 return;
         }
     }
+
+    
 
     private void SetPlaceImage()
     {
@@ -127,8 +134,12 @@ public class PlaceBehavior : MonoBehaviour, IPointerClickHandler
 
                 if (numberOfPeople > 0 & placeState == PlaceState.fighting || placeState == PlaceState.enemies)
                 {
-                    ChangeNumberOfPeople(-1);
-                    ResourceManager.instance.currentFoodGrowth += 1;
+                    if (numberOfPeople > 0)
+                    {
+                        ChangeNumberOfPeople(-1);
+                        ResourceManager.instance.currentFoodGrowth += 1;
+                    }
+
                 }
 
                 

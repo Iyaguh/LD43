@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-[ExecuteInEditMode]
+//[ExecuteInEditMode]
 public class ResourceManager : MonoBehaviour {
 
     public static ResourceManager instance;
@@ -11,6 +11,7 @@ public class ResourceManager : MonoBehaviour {
     public int food = 0;
     public int peopleCapacity = 0;
     public int peopleAmount = 0;
+    public int peopleOccupied = 0;
     [HideInInspector]
     public float spawnTimer = 0;
     public int amountOfPeopleInShip = 0;
@@ -62,6 +63,7 @@ public class ResourceManager : MonoBehaviour {
         placeBehaviors = FindObjectsOfType<PlaceBehavior>();
         CollectDataFromPlaceBehaviors();
         print("одно место");
+//        isPaused = true;
     }
 
     public void CheckIfNotEnoughFood()
